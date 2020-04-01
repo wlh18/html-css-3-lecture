@@ -1,4 +1,5 @@
 @import './reset.css';
+
 * {
   box-sizing: border-box;
 }
@@ -11,6 +12,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 15px 50px;
+  position: relative;
 }
 
 .header > h1 {
@@ -33,6 +35,32 @@
   justify-content: space-evenly;
   height: 100%;
   align-items: center;
+}
+
+.hamburger {
+  height: 90%;
+  position: absolute;
+  right: 10%;
+  display: none;
+}
+
+.mobile-nav-list {
+  position: absolute;
+  top: 10vh;
+  height: 0;
+  width: 150px;
+  background-color: tomato;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  overflow-y: hidden;
+  transition: all 1s;
+}
+
+.mobile-nav-list-open {
+  height: 200px;
 }
 
 .nav-item {
@@ -67,12 +95,102 @@ main {
 
 .red-box {
   background-color: red;
+  animation-name: spin;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
 
 .green-box {
   background-color: green;
+  animation: color-change linear 5s infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+    background-color: red;
+    /* height: 100px; */
+  }
+
+  50% {
+    background-color: orchid;
+  }
+
+  to {
+    transform: rotate(360deg);
+    background-color: blue;
+    /* height: 50px; */
+  }
+}
+
+@keyframes color-change {
+  0% {
+    background-color: green;
+  }
+
+  50% {
+    background-color: aquamarine;
+    transform: scale(2) translate(100px) rotate(180deg);
+  }
+
+  100% {
+    background-color: green;
+    transform: scale(1) translate(0px);
+  }
+}
+
+@keyframes minion {
+  from {
+    background: blue;
+  }
+
+  to {
+    background-image: url('https://partycity6.scene7.com/is/image/PartyCity/_pdp_sq_?$_1000x1000_$&$product=PartyCity/662765');
+    background-size: 100%;
+    background-position: center;
+    background-color: transparent;
+  }
 }
 
 .blue-box {
   background-color: blue;
+}
+
+.blue-box:hover {
+  animation: minion 500ms linear;
+}
+
+@media (max-width: 1200px) {
+  .header {
+    background-color: tomato;
+  }
+}
+
+@media (min-width: 1500px) {
+  .header {
+    background-color: ivory;
+  }
+}
+
+@media (max-width: 900px) {
+  .header > h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 600px) {
+  .mobile-nav-list {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-list {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
 }
